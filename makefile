@@ -1,6 +1,6 @@
 IMAGE_NAME := adamcodd-donut-extract
 TAG := 2.0.0-runpod-0.6.2
-REGISTRY := 709223484128.dkr.ecr.us-west-2.amazonaws.com/splittab
+REGISTRY := klam34
 
 build:
 	docker build -t $(IMAGE_NAME):$(TAG) .
@@ -16,8 +16,5 @@ push:
 	export COMPOSE_HTTP_TIMEOUT=1200
 	docker tag $(IMAGE_NAME):$(TAG) $(REGISTRY)/$(IMAGE_NAME):$(TAG)
 	docker push $(REGISTRY)/$(IMAGE_NAME):$(TAG)
-
-ecr-login:
-	aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $(REGISTRY)
 	
 .PHONY: build push run
