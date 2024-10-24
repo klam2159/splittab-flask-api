@@ -1,10 +1,12 @@
-# IMAGE_NAME := splittab-model-runpod
 IMAGE_NAME := adamcodd-donut-extract
 TAG := 2.0.0-runpod-0.6.2
-REGISTRY := klam34 #DockerHub
+REGISTRY := 709223484128.dkr.ecr.us-west-2.amazonaws.com/splittab
 
 build:
 	docker build -t $(IMAGE_NAME):$(TAG) .
+
+test-server:
+	python3 src/handler.py --rp_serve_api
 
 run:
 	docker run -it --rm $(IMAGE_NAME):$(TAG)
